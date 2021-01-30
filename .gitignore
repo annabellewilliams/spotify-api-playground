@@ -1,0 +1,11 @@
+# IDE
+/.idea
+/client/.idea
+
+# Server
+/server/node_modules
+/server/package-lock.json
+
+# Client
+/client/node_modules
+/client/.eslintcache
