@@ -5,6 +5,7 @@
 # Server
 /server/node_modules
 /server/package-lock.json
+/server/.env
 
 # Client
 /client/node_modules
