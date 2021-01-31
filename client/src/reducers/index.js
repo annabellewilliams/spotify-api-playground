@@ -37,6 +37,7 @@ export const tracksReducer = (tracks = null, action) => {
     if (action.type === TRACKS_FETCH_SUCCEEDED) {
         return action.payload;
     }
+    return tracks;
 };
 
 export const albumSelectedReducer = (album = null, action) => {
