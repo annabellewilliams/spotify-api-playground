@@ -1,7 +1,17 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { ALBUMS_FETCH_REQUESTED, ALBUMS_FETCH_SUCCEEDED, ALBUMS_FETCH_FAILED} from "../actions/types";
+import {
+    ALBUMS_FETCH_REQUESTED, ALBUMS_FETCH_SUCCEEDED, ALBUMS_FETCH_FAILED,
+    ARTISTS_FETCH_REQUESTED, ARTISTS_FETCH_SUCCEEDED, ARTISTS_FETCH_FAILED,
+    PLAYLISTS_FETCH_REQUESTED, PLAYLISTS_FETCH_SUCCEEDED, PLAYLISTS_FETCH_FAILED,
+    TRACKS_FETCH_REQUESTED, TRACKS_FETCH_SUCCEEDED, TRACKS_FETCH_FAILED,
+    ALBUM_SELECTED_REQUESTED, ALBUM_SELECTED_SUCCEEDED, ALBUM_SELECTED_FAILED,
+    ARTIST_SELECTED_REQUESTED, ARTIST_SELECTED_SUCCEEDED, ARTIST_SELECTED_FAILED,
+    PLAYLIST_SELECTED_REQUESTED, PLAYLIST_SELECTED_SUCCEEDED, PLAYLIST_SELECTED_FAILED,
+    TRACK_SELECTED_REQUESTED, TRACK_SELECTED_SUCCEEDED, TRACK_SELECTED_FAILED
+} from "../actions/types";
+import {trackSelectedReducer} from "../reducers";
 
 function* fetchAlbums() {
     try {
@@ -9,7 +19,7 @@ function* fetchAlbums() {
             method: 'get',
             url: 'http://localhost:3001/user/albums',
             headers: {}
-        }
+        };
         const albums = yield call(axios, getAlbumsConfig);
 
         yield put({ type: ALBUMS_FETCH_SUCCEEDED, payload: albums.data });
@@ -18,8 +28,114 @@ function* fetchAlbums() {
     }
 }
 
+function* fetchArtists() {
+    try {
+        const getArtistsConfig = {
+            method: 'get',
+            url: 'http://localhost:3001/user/artists'
+        }
+        const artists = yield call(axios, getArtistsConfig);
+
+        yield put({ type: ARTISTS_FETCH_SUCCEEDED, payload: artists.data });
+    } catch (e) {
+        yield put({ type: ARTISTS_FETCH_FAILED, action: e.message });
+    }
+}
+
+function* fetchPlaylists() {
+    try {
+        const getPlaylistsConfig = {
+            method: 'get',
+            url: 'http://localhost:3001/user/playlists'
+        }
+        const playlists = yield call(axios, getPlaylistsConfig);
+
+        yield put({ type: PLAYLISTS_FETCH_SUCCEEDED, payload: playlists.data });
+    } catch (e) {
+        yield put({ type: PLAYLISTS_FETCH_FAILED, action: e.message });
+    }
+}
+
+function* fetchTracks() {
+    try {
+        const getTracksConfig = {
+            method: 'get',
+            url: 'http://localhost:3001/user/tracks'
+        }
+        const tracks = yield call(axios, getTracksConfig);
+
+        yield put({ type: TRACKS_FETCH_SUCCEEDED, payload: tracks.data });
+    } catch (e) {
+        yield put({ type: TRACKS_FETCH_FAILED, action: e.message });
+    }
+}
+
+function* selectAlbum(id) {
+    try {
+        const getAlbumConfig = {
+            method: 'get',
+            url: `http://localhost:3001/albums/${id}`
+        }
+        const album = yield call(axios, getAlbumConfig);
+
+        yield put({ type: ALBUM_SELECTED_SUCCEEDED, payload: album.data });
+    } catch (e) {
+        yield put({ type: ALBUM_SELECTED_FAILED, payload: e.message });
+    }
+}
+
+function* selectArtist(id) {
+    try {
+        const getArtistConfig = {
+            method: 'get',
+            url: `http://localhost:3001/artists/${id}`
+        }
+        const artist = yield call(axios, getArtistConfig);
+
+        yield put({ type: ARTIST_SELECTED_SUCCEEDED, payload: artist.data });
+    } catch (e) {
+        yield put({ type: ARTIST_SELECTED_FAILED, payload: e.message });
+    }
+}
+
+function* selectPlaylist(id) {
+    try {
+        const getPlaylistConfig = {
+            method: 'get',
+            url: `http://localhost:3001/playlists/${id}`
+        }
+        const playlist = yield call(axios, getPlaylistConfig);
+
+        yield put({ type: PLAYLIST_SELECTED_SUCCEEDED, payload: playlist.data });
+    } catch (e) {
+        yield put({ type: PLAYLIST_SELECTED_FAILED, payload: e.message });
+    }
+}
+
+function* selectTrack(id) {
+    try {
+        const getTrackConfig = {
+            method: 'get',
+            url: `http://localhost:3001/tracks/${id}`
+        }
+        const track = yield call(axios, getTrackConfig);
+
+        yield put({ type: TRACK_SELECTED_SUCCEEDED, payload: track.data });
+    } catch (e) {
+        yield put({ type: TRACK_SELECTED_FAILED, payload: e.message });
+    }
+}
+
 function* rootSaga() {
     yield takeLatest(ALBUMS_FETCH_REQUESTED, fetchAlbums);
+    yield takeLatest(ARTISTS_FETCH_REQUESTED, fetchArtists);
+    yield takeLatest(PLAYLISTS_FETCH_REQUESTED, fetchPlaylists);
+    yield takeLatest(TRACKS_FETCH_REQUESTED, fetchTracks);
+    yield takeLatest(ALBUM_SELECTED_REQUESTED, selectAlbum);
+    yield takeLatest(ARTIST_SELECTED_REQUESTED, selectArtist);
+    yield takeLatest(PLAYLIST_SELECTED_REQUESTED, selectPlaylist);
+    yield takeLatest(TRACK_SELECTED_REQUESTED, selectTrack);
 }
+
 
 export default rootSaga;
