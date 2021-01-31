@@ -16,7 +16,7 @@ exports.callback = async (req, res) => {
         const token = await axios.post('https://accounts.spotify.com/api/token', querystring.stringify({
             'grant_type': 'authorization_code',
             'code': req.query.code,
-            'redirect_uri': 'http://localhost:3000/callback/'
+            'redirect_uri': 'http://localhost:3001/callback/'
         }),{
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
