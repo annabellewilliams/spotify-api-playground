@@ -115,9 +115,7 @@ app.get('/user/following/albums', async (req, res) => {
             }
         });
         let albumData = _.pick(albums.data, ['href', 'items']);
-        console.log(albumData.items[0]);
         albumData.items = _.map(albumData.items, item => {
-            // console.log(_.pick(item, ['album']));
             let currentAlbum = _.pick(item, [
                 'album.album_type',
                 'album.artists',
@@ -130,7 +128,6 @@ app.get('/user/following/albums', async (req, res) => {
                 'album.tracks.href',
                 'album.tracks.items',
             ]);
-            console.log(currentAlbum);
             currentAlbum.album.tracks.items = _.map(currentAlbum.album.tracks.items, item => {
                 return _.pick(item, [
                     'id',
@@ -146,6 +143,49 @@ app.get('/user/following/albums', async (req, res) => {
             return currentAlbum;
         });
         res.send(albumData);
+    } catch (e) {
+        res.send({ error: true, message: e.message, trace: e });
+    }
+});
+
+//
+// USER'S SAVED TRACKS
+//
+app.get('/user/following/tracks', async (req, res) => {
+    try {
+        const tracks = await axios.get('https://api.spotify.com/v1/me/tracks', {
+            headers: {
+                "Authorization": `Bearer ${ACCESS_TOKEN}`
+            }
+        });
+        let trackData = tracks.data;
+        trackData.items = _.map(tracks.data.items, trackObj => {
+            let trackDataItem = _.pick(trackObj, [
+                'id',
+                'name',
+                'href',
+                'external_urls',
+                'track.album.id',
+                'track.album.name',
+                'track.album.images',
+                'track.album.release_date',
+                'track.album.total_tracks',
+                'track.album.album_type',
+                'track.album.external_urls',
+                'track.album.href',
+                'track.artists'
+            ]);
+            trackDataItem.track.artists = _.map(trackDataItem.track.artists, artist => {
+                return _.pick(artist, [
+                    'id',
+                    'name',
+                    'href',
+                    'external_urls',
+                ]);
+            });
+            return trackDataItem;
+        });
+        res.send(trackData);
     } catch (e) {
         res.send({ error: true, message: e.message, trace: e });
     }
