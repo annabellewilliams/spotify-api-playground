@@ -78,7 +78,7 @@ h3 {
   transition: all 0.5s;
 
   &:visited,
-  &:focus
+  &:focus,
   &:hover,
   &:active {
     color: var(--main-font-color);
@@ -111,6 +111,37 @@ h3 {
     grid-template-areas:
 "sidebar main social";
   }
+}
+
+// Track List //////////////////////////////
+.tracklist {
+  display: grid;
+}
+
+.tracklist-row {
+  display: grid;
+  border: 0;
+  vertical-align: baseline;
+  padding: 0 16px;
+  grid-gap: 16px;
+  grid-template-columns: [index] 16px [first] 4fr [var1] 2fr [last] minmax(120px,1fr);
+  margin-bottom: 15px;
+}
+
+.tracklist-row-title {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "title title" "badges subtitle";
+  column-gap: 10px;
+  align-items: center;
+}
+
+.tracklist-row-header {
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: larger;
+  margin-bottom: 20px;
 }
 
 // Sidebar ////////////////////////////////

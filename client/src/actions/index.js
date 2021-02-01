@@ -30,10 +30,13 @@ export const fetchPlaylists = () => {
     };
 };
 
-export const fetchTracks = () => {
+export const fetchTracks = (container, id) => {
     return {
         type: TRACKS_FETCH_REQUESTED,
-        payload: null
+        payload: {
+            container,
+            id
+        }
     };
 };
 

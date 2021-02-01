@@ -61,6 +61,7 @@ app.get('/user/artists', artists.getArtists);
 // USER'S SAVED ALBUMS
 //
 app.get('/user/albums', albums.getAlbums);
+app.get('/user/albums/:id/tracks', albums.getAlbumTracks);
 
 //
 // USER'S SAVED TRACKS

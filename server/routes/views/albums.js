@@ -41,3 +41,20 @@ exports.getAlbums = async (req, res) => {
         res.send({ error: true, message: e.message, trace: e });
     }
 };
+
+exports.getAlbumTracks = async (req, res) => {
+    const albumId = req.params.id;
+    try {
+        const tracks = await axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+            headers: {
+                "Authorization": `Bearer ${process.env.ACCESS_TOKEN}`
+            },
+            params: {
+                market: 'from_token'
+            }
+        });
+        res.send(tracks.data);
+    } catch (e) {
+        res.send({ error: true, message: e.message, trace: e });
+    }
+};

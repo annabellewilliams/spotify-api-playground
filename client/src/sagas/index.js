@@ -56,12 +56,12 @@ function* fetchPlaylists() {
     }
 }
 
-function* fetchTracks() {
+function* fetchTracks({ payload }) {
     try {
         const getTracksConfig = {
             method: 'get',
-            url: 'http://localhost:3001/user/tracks'
-        }
+            url: `http://localhost:3001/user/${payload.container}/${payload.id}/tracks`
+        };
         const tracks = yield call(axios, getTracksConfig);
 
         yield put({ type: TRACKS_FETCH_SUCCEEDED, payload: tracks.data });
