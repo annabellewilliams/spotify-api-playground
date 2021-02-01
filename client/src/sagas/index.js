@@ -6,6 +6,7 @@ import {
     SAVED_ARTISTS_FETCH_REQUESTED, SAVED_ARTISTS_FETCH_SUCCEEDED, SAVED_ARTISTS_FETCH_FAILED,
     SAVED_PLAYLISTS_FETCH_REQUESTED, SAVED_PLAYLISTS_FETCH_SUCCEEDED, SAVED_PLAYLISTS_FETCH_FAILED,
     SAVED_TRACKS_FETCH_REQUESTED, SAVED_TRACKS_FETCH_SUCCEEDED, SAVED_TRACKS_FETCH_FAILED,
+    TRACKS_FETCH_REQUESTED, TRACKS_FETCH_SUCCEEDED, TRACKS_FETCH_FAILED,
     ALBUM_SELECTED_REQUESTED, ALBUM_SELECTED_SUCCEEDED, ALBUM_SELECTED_FAILED,
     ARTIST_SELECTED_REQUESTED, ARTIST_SELECTED_SUCCEEDED, ARTIST_SELECTED_FAILED,
     PLAYLIST_SELECTED_REQUESTED, PLAYLIST_SELECTED_SUCCEEDED, PLAYLIST_SELECTED_FAILED,
@@ -13,7 +14,7 @@ import {
 } from "../actions/types";
 import {trackSelectedReducer} from "../reducers";
 
-function* fetchAlbums() {
+function* fetchSavedAlbums() {
     try {
         const getAlbumsConfig = {
             method: 'get',
@@ -28,7 +29,7 @@ function* fetchAlbums() {
     }
 }
 
-function* fetchArtists() {
+function* fetchSavedArtists() {
     try {
         const getArtistsConfig = {
             method: 'get',
@@ -42,7 +43,7 @@ function* fetchArtists() {
     }
 }
 
-function* fetchPlaylists() {
+function* fetchSavedPlaylists() {
     try {
         const getPlaylistsConfig = {
             method: 'get',
@@ -53,6 +54,20 @@ function* fetchPlaylists() {
         yield put({ type: SAVED_PLAYLISTS_FETCH_SUCCEEDED, payload: playlists.data });
     } catch (e) {
         yield put({ type: SAVED_PLAYLISTS_FETCH_FAILED, action: e.message });
+    }
+}
+
+function* fetchSavedTracks() {
+    try {
+        const getTracksConfig = {
+            method: 'get',
+            url: `http://localhost:3001/user/tracks`
+        };
+        const tracks = yield call(axios, getTracksConfig);
+
+        yield put({ type: SAVED_TRACKS_FETCH_SUCCEEDED, payload: tracks.data });
+    } catch (e) {
+        yield put({ type: SAVED_TRACKS_FETCH_FAILED, action: e.message });
     }
 }
 
@@ -127,10 +142,11 @@ function* selectTrack(id) {
 }
 
 function* rootSaga() {
-    yield takeLatest(SAVED_ALBUMS_FETCH_REQUESTED, fetchAlbums);
-    yield takeLatest(SAVED_ARTISTS_FETCH_REQUESTED, fetchArtists);
-    yield takeLatest(SAVED_PLAYLISTS_FETCH_REQUESTED, fetchPlaylists);
-    yield takeLatest(SAVED_TRACKS_FETCH_REQUESTED, fetchTracks);
+    yield takeLatest(SAVED_ALBUMS_FETCH_REQUESTED, fetchSavedAlbums);
+    yield takeLatest(SAVED_ARTISTS_FETCH_REQUESTED, fetchSavedArtists);
+    yield takeLatest(SAVED_PLAYLISTS_FETCH_REQUESTED, fetchSavedPlaylists);
+    yield takeLatest(SAVED_TRACKS_FETCH_REQUESTED, fetchSavedTracks);
+    yield takeLatest(TRACKS_FETCH_REQUESTED, fetchTracks);
     yield takeLatest(ALBUM_SELECTED_REQUESTED, selectAlbum);
     yield takeLatest(ARTIST_SELECTED_REQUESTED, selectArtist);
     yield takeLatest(PLAYLIST_SELECTED_REQUESTED, selectPlaylist);

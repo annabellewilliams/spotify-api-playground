@@ -10,6 +10,7 @@ import ArtistList from "./main/lists/ArtistList";
 import TrackList from "./main/TrackList";
 import Playlists from "./sidebar/Playlists";
 import PlaylistView from "./main/PlaylistView";
+import AlbumView from "./main/AlbumView";
 
 const routes = [
     {
@@ -27,7 +28,7 @@ const routes = [
     },
     {
         path: "/user/songs",
-        main: () => <PlaylistView />
+        main: () => <AlbumView />
     }
 ];
 

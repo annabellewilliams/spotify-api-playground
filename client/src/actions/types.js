@@ -14,6 +14,10 @@ export const SAVED_TRACKS_FETCH_REQUESTED = 'saved_tracks_fetch_requested';
 export const SAVED_TRACKS_FETCH_SUCCEEDED = 'saved_tracks_fetch_succeeded';
 export const SAVED_TRACKS_FETCH_FAILED = 'saved_tracks_fetch_failed';
 
+export const TRACKS_FETCH_REQUESTED = 'tracks_fetch_requested';
+export const TRACKS_FETCH_SUCCEEDED = 'tracks_fetch_succeeded';
+export const TRACKS_FETCH_FAILED = 'tracks_fetch_failed';
+
 export const ALBUM_SELECTED_REQUESTED = 'album_selected_requested';
 export const ALBUM_SELECTED_SUCCEEDED = 'album_selected_succeeded';
 export const ALBUM_SELECTED_FAILED = 'album_selected_failed';

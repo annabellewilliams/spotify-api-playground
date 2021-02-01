@@ -16,7 +16,6 @@ const Tracklist = ({ tracks, fetchTracks, container, id }) => {
     }
 
     if (tracks) {
-        console.log(tracks);
         const renderTrackList = (tracks) => {
             return tracks.items.map(({ track }, index) => {
                 return (

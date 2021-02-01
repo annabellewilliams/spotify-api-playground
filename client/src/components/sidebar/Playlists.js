@@ -25,6 +25,7 @@ const Playlists = ({ playlists, fetchPlaylists }) => {
         );
     } else {
         return (
+            // Placeholder
             <ul className="sidebar__playlists">
                 <h2 className="sidebar__header">Playlists</h2>
                 <li>Liked from Radio</li>
