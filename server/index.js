@@ -14,6 +14,25 @@ const app = express();
 
 app.use(express.json());
 
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
 
 //
 // LOGIN
@@ -36,22 +55,23 @@ app.get('/user/profile', user.getUserProfile);
 //
 //  USER'S SAVED ARTISTS
 //
-app.get('/user/artists', artists.getArtists);
+app.get('/user/artists', artists.getUserArtists);
 
 //
 // USER'S SAVED ALBUMS
 //
-app.get('/user/albums', albums.getAlbums);
+app.get('/user/albums', albums.getUserAlbums);
+app.get('/user/albums/:id/tracks', albums.getAlbumTracks);
 
 //
 // USER'S SAVED TRACKS
 //
-app.get('/user/tracks', tracks.findTracks);
+app.get('/user/tracks', tracks.getUserTracks);
 
 //
 // USER'S SAVED PLAYLISTS
 //
-app.get('/user/playlists', playlists.getPlaylists);
+app.get('/user/playlists', playlists.getUserPlaylists);
 
 app.get('/user/playlists/:id', playlists.getPlaylistById);
 
@@ -62,6 +82,6 @@ app.post('/user/playlists/new', playlists.createPlaylist);
 app.put('/user/playlists/:id', playlists.modifyPlaylist);
 
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000');
+app.listen(3001, () => {
+    console.log('Listening on port 3001');
 });

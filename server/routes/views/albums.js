@@ -1,7 +1,7 @@
 const axios = require("axios");
 const _ = require('lodash');
 
-exports.getAlbums = async (req, res) => {
+exports.getUserAlbums = async (req, res) => {
     try {
         const albums = await axios.get('https://api.spotify.com/v1/me/albums', {
             headers: {
@@ -37,6 +37,23 @@ exports.getAlbums = async (req, res) => {
             return currentAlbum;
         });
         res.send(albumData);
+    } catch (e) {
+        res.send({ error: true, message: e.message, trace: e });
+    }
+};
+
+exports.getAlbumTracks = async (req, res) => {
+    const albumId = req.params.id;
+    try {
+        const tracks = await axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+            headers: {
+                "Authorization": `Bearer ${process.env.ACCESS_TOKEN}`
+            },
+            params: {
+                market: 'from_token'
+            }
+        });
+        res.send(tracks.data);
     } catch (e) {
         res.send({ error: true, message: e.message, trace: e });
     }

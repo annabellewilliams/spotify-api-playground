@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-exports.getArtists = async (req, res) => {
+exports.getUserArtists = async (req, res) => {
     try {
         const artists = await axios.get('https://api.spotify.com/v1/me/following', {
             params: {

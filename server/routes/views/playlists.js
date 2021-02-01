@@ -1,7 +1,7 @@
 const axios = require("axios");
 const _ = require('lodash');
 
-exports.getPlaylists = async (req, res) => {
+exports.getUserPlaylists = async (req, res) => {
     try {
         const playlists = await axios(`https://api.spotify.com/v1/me/playlists`, {
             headers: {
