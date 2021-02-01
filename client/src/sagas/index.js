@@ -2,10 +2,10 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 import {
-    ALBUMS_FETCH_REQUESTED, ALBUMS_FETCH_SUCCEEDED, ALBUMS_FETCH_FAILED,
-    ARTISTS_FETCH_REQUESTED, ARTISTS_FETCH_SUCCEEDED, ARTISTS_FETCH_FAILED,
-    PLAYLISTS_FETCH_REQUESTED, PLAYLISTS_FETCH_SUCCEEDED, PLAYLISTS_FETCH_FAILED,
-    TRACKS_FETCH_REQUESTED, TRACKS_FETCH_SUCCEEDED, TRACKS_FETCH_FAILED,
+    SAVED_ALBUMS_FETCH_REQUESTED, SAVED_ALBUMS_FETCH_SUCCEEDED, SAVED_ALBUMS_FETCH_FAILED,
+    SAVED_ARTISTS_FETCH_REQUESTED, SAVED_ARTISTS_FETCH_SUCCEEDED, SAVED_ARTISTS_FETCH_FAILED,
+    SAVED_PLAYLISTS_FETCH_REQUESTED, SAVED_PLAYLISTS_FETCH_SUCCEEDED, SAVED_PLAYLISTS_FETCH_FAILED,
+    SAVED_TRACKS_FETCH_REQUESTED, SAVED_TRACKS_FETCH_SUCCEEDED, SAVED_TRACKS_FETCH_FAILED,
     ALBUM_SELECTED_REQUESTED, ALBUM_SELECTED_SUCCEEDED, ALBUM_SELECTED_FAILED,
     ARTIST_SELECTED_REQUESTED, ARTIST_SELECTED_SUCCEEDED, ARTIST_SELECTED_FAILED,
     PLAYLIST_SELECTED_REQUESTED, PLAYLIST_SELECTED_SUCCEEDED, PLAYLIST_SELECTED_FAILED,
@@ -22,9 +22,9 @@ function* fetchAlbums() {
         };
         const albums = yield call(axios, getAlbumsConfig);
 
-        yield put({ type: ALBUMS_FETCH_SUCCEEDED, payload: albums.data });
+        yield put({ type: SAVED_ALBUMS_FETCH_SUCCEEDED, payload: albums.data });
     } catch (e) {
-        yield put({ type: ALBUMS_FETCH_FAILED, action: e.message });
+        yield put({ type: SAVED_ALBUMS_FETCH_FAILED, action: e.message });
     }
 }
 
@@ -36,9 +36,9 @@ function* fetchArtists() {
         }
         const artists = yield call(axios, getArtistsConfig);
 
-        yield put({ type: ARTISTS_FETCH_SUCCEEDED, payload: artists.data });
+        yield put({ type: SAVED_ARTISTS_FETCH_SUCCEEDED, payload: artists.data });
     } catch (e) {
-        yield put({ type: ARTISTS_FETCH_FAILED, action: e.message });
+        yield put({ type: SAVED_ARTISTS_FETCH_FAILED, action: e.message });
     }
 }
 
@@ -50,9 +50,9 @@ function* fetchPlaylists() {
         }
         const playlists = yield call(axios, getPlaylistsConfig);
 
-        yield put({ type: PLAYLISTS_FETCH_SUCCEEDED, payload: playlists.data });
+        yield put({ type: SAVED_PLAYLISTS_FETCH_SUCCEEDED, payload: playlists.data });
     } catch (e) {
-        yield put({ type: PLAYLISTS_FETCH_FAILED, action: e.message });
+        yield put({ type: SAVED_PLAYLISTS_FETCH_FAILED, action: e.message });
     }
 }
 
@@ -64,9 +64,9 @@ function* fetchTracks({ payload }) {
         };
         const tracks = yield call(axios, getTracksConfig);
 
-        yield put({ type: TRACKS_FETCH_SUCCEEDED, payload: tracks.data });
+        yield put({ type: SAVED_TRACKS_FETCH_SUCCEEDED, payload: tracks.data });
     } catch (e) {
-        yield put({ type: TRACKS_FETCH_FAILED, action: e.message });
+        yield put({ type: SAVED_TRACKS_FETCH_FAILED, action: e.message });
     }
 }
 
@@ -127,10 +127,10 @@ function* selectTrack(id) {
 }
 
 function* rootSaga() {
-    yield takeLatest(ALBUMS_FETCH_REQUESTED, fetchAlbums);
-    yield takeLatest(ARTISTS_FETCH_REQUESTED, fetchArtists);
-    yield takeLatest(PLAYLISTS_FETCH_REQUESTED, fetchPlaylists);
-    yield takeLatest(TRACKS_FETCH_REQUESTED, fetchTracks);
+    yield takeLatest(SAVED_ALBUMS_FETCH_REQUESTED, fetchAlbums);
+    yield takeLatest(SAVED_ARTISTS_FETCH_REQUESTED, fetchArtists);
+    yield takeLatest(SAVED_PLAYLISTS_FETCH_REQUESTED, fetchPlaylists);
+    yield takeLatest(SAVED_TRACKS_FETCH_REQUESTED, fetchTracks);
     yield takeLatest(ALBUM_SELECTED_REQUESTED, selectAlbum);
     yield takeLatest(ARTIST_SELECTED_REQUESTED, selectArtist);
     yield takeLatest(PLAYLIST_SELECTED_REQUESTED, selectPlaylist);

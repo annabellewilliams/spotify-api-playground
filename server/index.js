@@ -55,23 +55,23 @@ app.get('/user/profile', user.getUserProfile);
 //
 //  USER'S SAVED ARTISTS
 //
-app.get('/user/artists', artists.getArtists);
+app.get('/user/artists', artists.getUserArtists);
 
 //
 // USER'S SAVED ALBUMS
 //
-app.get('/user/albums', albums.getAlbums);
+app.get('/user/albums', albums.getUserAlbums);
 app.get('/user/albums/:id/tracks', albums.getAlbumTracks);
 
 //
 // USER'S SAVED TRACKS
 //
-app.get('/user/tracks', tracks.findTracks);
+app.get('/user/tracks', tracks.getUserTracks);
 
 //
 // USER'S SAVED PLAYLISTS
 //
-app.get('/user/playlists', playlists.getPlaylists);
+app.get('/user/playlists', playlists.getUserPlaylists);
 
 app.get('/user/playlists/:id', playlists.getPlaylistById);
 

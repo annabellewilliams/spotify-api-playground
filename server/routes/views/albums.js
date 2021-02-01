@@ -1,7 +1,7 @@
 const axios = require("axios");
 const _ = require('lodash');
 
-exports.getAlbums = async (req, res) => {
+exports.getUserAlbums = async (req, res) => {
     try {
         const albums = await axios.get('https://api.spotify.com/v1/me/albums', {
             headers: {

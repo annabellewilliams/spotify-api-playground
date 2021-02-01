@@ -1,8 +1,8 @@
 import {
-    ALBUMS_FETCH_REQUESTED,
-    ARTISTS_FETCH_REQUESTED,
-    PLAYLISTS_FETCH_REQUESTED,
-    TRACKS_FETCH_REQUESTED,
+    SAVED_ALBUMS_FETCH_REQUESTED,
+    SAVED_ARTISTS_FETCH_REQUESTED,
+    SAVED_PLAYLISTS_FETCH_REQUESTED,
+    SAVED_TRACKS_FETCH_REQUESTED,
     ALBUM_SELECTED_REQUESTED,
     ARTIST_SELECTED_REQUESTED,
     PLAYLIST_SELECTED_REQUESTED,
@@ -11,28 +11,28 @@ import {
 
 export const fetchAlbums = () => {
     return {
-        type: ALBUMS_FETCH_REQUESTED,
+        type: SAVED_ALBUMS_FETCH_REQUESTED,
         payload: null
     };
 };
 
 export const fetchArtists = () => {
     return {
-        type: ARTISTS_FETCH_REQUESTED,
+        type: SAVED_ARTISTS_FETCH_REQUESTED,
         payload: null
     };
 };
 
 export const fetchPlaylists = () => {
     return {
-        type: PLAYLISTS_FETCH_REQUESTED,
+        type: SAVED_PLAYLISTS_FETCH_REQUESTED,
         payload: null
     };
 };
 
 export const fetchTracks = (container, id) => {
     return {
-        type: TRACKS_FETCH_REQUESTED,
+        type: SAVED_TRACKS_FETCH_REQUESTED,
         payload: {
             container,
             id

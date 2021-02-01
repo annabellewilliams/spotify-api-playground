@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
 import {
-    ALBUMS_FETCH_SUCCEEDED,
-    ARTISTS_FETCH_SUCCEEDED,
-    PLAYLISTS_FETCH_SUCCEEDED,
-    TRACKS_FETCH_SUCCEEDED,
+    SAVED_ALBUMS_FETCH_SUCCEEDED,
+    SAVED_ARTISTS_FETCH_SUCCEEDED,
+    SAVED_PLAYLISTS_FETCH_SUCCEEDED,
+    SAVED_TRACKS_FETCH_SUCCEEDED,
     ALBUM_SELECTED_SUCCEEDED,
     ARTIST_SELECTED_SUCCEEDED,
     PLAYLIST_SELECTED_SUCCEEDED,
@@ -13,28 +13,28 @@ import {
 import { fetchAlbums } from "../actions";
 
 export const albumsReducer = (albums= null, action) => {
-    if (action.type === ALBUMS_FETCH_SUCCEEDED) {
+    if (action.type === SAVED_ALBUMS_FETCH_SUCCEEDED) {
         return action.payload;
     }
     return albums;
 };
 
 export const artistsReducer = (artists = null, action) => {
-    if (action.type === ARTISTS_FETCH_SUCCEEDED) {
+    if (action.type === SAVED_ARTISTS_FETCH_SUCCEEDED) {
         return action.payload;
     }
     return artists;
 };
 
 export const playlistsReducer = (playlists = null, action) => {
-    if (action.type === PLAYLISTS_FETCH_SUCCEEDED) {
+    if (action.type === SAVED_PLAYLISTS_FETCH_SUCCEEDED) {
         return action.payload;
     }
     return playlists;
 };
 
 export const tracksReducer = (tracks = null, action) => {
-    if (action.type === TRACKS_FETCH_SUCCEEDED) {
+    if (action.type === SAVED_TRACKS_FETCH_SUCCEEDED) {
         return action.payload;
     }
     return tracks;

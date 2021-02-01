@@ -1,18 +1,18 @@
-export const ALBUMS_FETCH_REQUESTED = 'albums_fetch_requested';
-export const ALBUMS_FETCH_SUCCEEDED = 'albums_fetch_succeeded';
-export const ALBUMS_FETCH_FAILED = 'albums_fetch_failed';
+export const SAVED_ALBUMS_FETCH_REQUESTED = 'saved_albums_fetch_requested';
+export const SAVED_ALBUMS_FETCH_SUCCEEDED = 'saved_albums_fetch_succeeded';
+export const SAVED_ALBUMS_FETCH_FAILED = 'saved_albums_fetch_failed';
 
-export const ARTISTS_FETCH_REQUESTED = 'artists_fetch_requested';
-export const ARTISTS_FETCH_SUCCEEDED = 'artists_fetch_succeeded';
-export const ARTISTS_FETCH_FAILED = 'artists_fetch_failed';
+export const SAVED_ARTISTS_FETCH_REQUESTED = 'saved_artists_fetch_requested';
+export const SAVED_ARTISTS_FETCH_SUCCEEDED = 'saved_artists_fetch_succeeded';
+export const SAVED_ARTISTS_FETCH_FAILED = 'saved_artists_fetch_failed';
 
-export const PLAYLISTS_FETCH_REQUESTED = 'playlists_fetch_requested';
-export const PLAYLISTS_FETCH_SUCCEEDED = 'playlists_fetch_succeeded';
-export const PLAYLISTS_FETCH_FAILED = 'playlists_fetch_failed';
+export const SAVED_PLAYLISTS_FETCH_REQUESTED = 'saved_playlists_fetch_requested';
+export const SAVED_PLAYLISTS_FETCH_SUCCEEDED = 'saved_playlists_fetch_succeeded';
+export const SAVED_PLAYLISTS_FETCH_FAILED = 'saved_playlists_fetch_failed';
 
-export const TRACKS_FETCH_REQUESTED = 'tracks_fetch_requested';
-export const TRACKS_FETCH_SUCCEEDED = 'tracks_fetch_succeeded';
-export const TRACKS_FETCH_FAILED = 'tracks_fetch_failed';
+export const SAVED_TRACKS_FETCH_REQUESTED = 'saved_tracks_fetch_requested';
+export const SAVED_TRACKS_FETCH_SUCCEEDED = 'saved_tracks_fetch_succeeded';
+export const SAVED_TRACKS_FETCH_FAILED = 'saved_tracks_fetch_failed';
 
 export const ALBUM_SELECTED_REQUESTED = 'album_selected_requested';
 export const ALBUM_SELECTED_SUCCEEDED = 'album_selected_succeeded';

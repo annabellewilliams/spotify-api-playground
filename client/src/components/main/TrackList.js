@@ -9,9 +9,6 @@ const Tracklist = ({ tracks, fetchTracks, container, id }) => {
         fetchTracks(container, id);
     }, [fetchTracks, container, id]);
 
-    console.log(container);
-    console.log(id);
-
     const formatDuration = (ms) => {
         const minutes = Math.floor(ms / 60000);
         const seconds = ((ms % 60000) / 1000).toFixed(0);

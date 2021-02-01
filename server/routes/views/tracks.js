@@ -1,7 +1,7 @@
 const axios = require("axios");
 const _ = require('lodash');
 
-exports.findTracks = async (req, res) => {
+exports.getUserTracks = async (req, res) => {
     try {
         const tracks = await axios.get('https://api.spotify.com/v1/me/tracks', {
             headers: {

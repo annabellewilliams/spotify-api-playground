@@ -1,7 +1,6 @@
 import React from 'react';
 
-import AlbumGrid from "./AlbumGrid";
-import AlbumView from "./AlbumView";
+import AlbumList from "./lists/AlbumList";
 import PlaylistView from "./PlaylistView";
 import Footer from "./footer/Footer";
 
@@ -23,9 +22,9 @@ const Main = () => {
                 <h2>Featured Playlist</h2>
                 <PlaylistView />
                 <h2>Featured Lists</h2>
-                <AlbumGrid />
+                <AlbumList />
             </section>
-            <Footer />
+            {/*<Footer />*/}
         </main>
     );
 }
