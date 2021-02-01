@@ -31,7 +31,7 @@ exports.getPlaylistById = async (req, res) => {
 exports.getPlaylistTracks = async (req, res) => {
     const playlistId = req.params.id;
     try {
-        const tracks = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        const tracks = await axios.get(` `, {
             headers: {
                 "Authorization": `Bearer ${process.env.ACCESS_TOKEN}`
             },
